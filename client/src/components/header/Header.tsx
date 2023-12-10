@@ -6,6 +6,17 @@ import Link from "next/link";
 import logo from "../../../public/assets/drone_gaijin.png";
 import { cn } from "@/lib/utils";
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
@@ -58,7 +69,7 @@ const aboutUsSections: { title: string; href: string; description: string }[] = 
 
 const Header: React.FC = () => {
   return (
-    <header className="flex align-middle items-center justify-around w-full border-b p-2">
+    <header className="flex fixed z-10 bg-white align-middle items-center justify-around w-full border-b p-2 mb-40">
       <div className="flex flex-col items-center justify-center">
         
           <h1 className="font-bold text-3xl text-zinc-900 ml-2">
@@ -70,104 +81,154 @@ const Header: React.FC = () => {
           </span>
       </div>
 
-      <NavigationMenu>
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger >Photos</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                <li className="row-span-4 h-auto">
-                  <NavigationMenuLink asChild>
-                    <Link
-                      className="flex h-20 w-full select-none flex-col rounded-md bg-gradient-to-b from-muted/50 to-muted p-2 no-underline outline-none focus:shadow-md"
-                      href="/"
-                    >
-                      <div className="mb-2 text-lg font-medium">New Photos</div>
-                      <p className="text-sm leading-tight text-muted-foreground">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Quae ducimus omnis, voluptatum eius molestias corrupti
-                        odit? Laborum dolore expedita.
-                      </p>
-                    </Link>
-                  </NavigationMenuLink>
-                </li>
-                <ListItem href="/docs" title="Categories">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                  autem nam quae.
-                </ListItem>
-                <ListItem href="/docs/installation" title="Promotional">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                  autem nam quae.
-                </ListItem>
-                <ListItem href="/docs/primitives/typography" title="Vectors">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                  autem nam quae.
-                </ListItem>
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger >Videos</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                <li className="row-span-4 h-auto">
-                  <NavigationMenuLink asChild>
-                    <Link
-                      className="flex h-20 w-full select-none flex-col rounded-md bg-gradient-to-b from-muted/50 to-muted p-2 no-underline outline-none focus:shadow-md"
-                      href="/"
-                    >
-                      <div className="mb-2 text-lg font-medium">New Videos</div>
-                      <p className="text-sm leading-tight text-muted-foreground">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Quae ducimus omnis, voluptatum eius molestias corrupti
-                        odit? Laborum dolore expedita.
-                      </p>
-                    </Link>
-                  </NavigationMenuLink>
-                </li>
-                <ListItem href="/docs" title="Categories">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                  autem nam quae.
-                </ListItem>
-                <ListItem href="/docs/installation" title="Promotional">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                  autem nam quae.
-                </ListItem>
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>About Us</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                {aboutUsSections.map((aboutUsSections) => (
-                  <ListItem
-                    key={aboutUsSections.title}
-                    title={aboutUsSections.title}
-                    href={aboutUsSections.href}
-                  >
-                    {aboutUsSections.description}
+      <div className="hidden md:hidden lg:flex">
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger >Photos</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                  <li className="row-span-4 h-auto">
+                    <NavigationMenuLink asChild>
+                      <Link
+                        className="flex h-20 w-full select-none flex-col rounded-md bg-gradient-to-b from-muted/50 to-muted p-2 no-underline outline-none focus:shadow-md"
+                        href="/"
+                      >
+                        <div className="mb-2 text-lg font-medium">New Photos</div>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                          Quae ducimus omnis, voluptatum eius molestias corrupti
+                          odit? Laborum dolore expedita.
+                        </p>
+                      </Link>
+                    </NavigationMenuLink>
+                  </li>
+                  <ListItem href="/docs" title="Categories">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
+                    autem nam quae.
                   </ListItem>
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="/docs" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Contact
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
-      <div className="flex gap-1 align-middle items-center">
-      
-      <Link href={'/auth'} className="flex mr-4 gap-[0.1rem] align-middle justify-center items-center font-medium text-sm">Eng<TiWorld size={"1.8rem"}/></Link>
-        <Link href={'/auth'} className="text-2xl mr-4"><FaShoppingCart /></Link>
-        <Link href={'/auth'} className="font-normal text-sm bg-zinc-800 text-white rounded-xl px-4 py-2">Sign-In</Link>
-        <Link href={'/auth'} className="font-normal text-sm bg-zinc-800 text-white rounded-xl px-4 py-2">Join Now!</Link>
+                  <ListItem href="/docs/installation" title="Promotional">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
+                    autem nam quae.
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger >Videos</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                  <li className="row-span-4 h-auto">
+                    <NavigationMenuLink asChild>
+                      <Link
+                        className="flex h-20 w-full select-none flex-col rounded-md bg-gradient-to-b from-muted/50 to-muted p-2 no-underline outline-none focus:shadow-md"
+                        href="/"
+                      >
+                        <div className="mb-2 text-lg font-medium">New Videos</div>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                          Quae ducimus omnis, voluptatum eius molestias corrupti
+                          odit? Laborum dolore expedita.
+                        </p>
+                      </Link>
+                    </NavigationMenuLink>
+                  </li>
+                  <ListItem href="/docs" title="Categories">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
+                    autem nam quae.
+                  </ListItem>
+                  <ListItem href="/docs/installation" title="Promotional">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
+                    autem nam quae.
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger >Services</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                  <li className="row-span-4 h-auto">
+                    <NavigationMenuLink asChild>
+                      <Link
+                        className="flex h-20 w-full select-none flex-col rounded-md bg-gradient-to-b from-muted/50 to-muted p-2 no-underline outline-none focus:shadow-md"
+                        href="/"
+                      >
+                        <div className="mb-2 text-lg font-medium">Our Services</div>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                          Quae ducimus omnis, voluptatum eius molestias corrupti
+                          odit? Laborum dolore expedita.
+                        </p>
+                      </Link>
+                    </NavigationMenuLink>
+                  </li>
+                  <ListItem href="/docs" title="Categories">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
+                    autem nam quae.
+                  </ListItem>
+                  <ListItem href="/docs/installation" title="Promotional">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
+                    autem nam quae.
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>About Us</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                  {aboutUsSections.map((aboutUsSections) => (
+                    <ListItem
+                      key={aboutUsSections.title}
+                      title={aboutUsSections.title}
+                      href={aboutUsSections.href}
+                    >
+                      {aboutUsSections.description}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/docs" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Contact
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
       </div>
+      <div className="flex gap-1 align-middle items-center">
+      <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <button className="hidden md:hidden lg:flex mr-4 gap-[0.1rem] align-middle justify-center items-center font-medium text-sm">Eng<TiWorld size={"1.8rem"}/></button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Select your language</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete your
+            account and remove your data from our servers.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogAction>English (Eng)</AlertDialogAction>
+          <AlertDialogAction>Brazilian Portuguese (PT-BR)</AlertDialogAction>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+        <Link href={'/eng/auth'} className="hidden md:hidden lg:flex font-normal text-sm bg-zinc-800 text-white rounded-xl px-4 py-2">Sign-In</Link>
+        
+      </div>
+      <button
+          className="lg:hidden md:flex flex text-5xl ml-40"
+          aria-label="Toggle Navigation"
+        >
+          ☰
+        </button>
     </header>
   );
 };

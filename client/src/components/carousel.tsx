@@ -259,7 +259,7 @@ const exampleProducts = [
 
 export async function Carousel() {
   // Purposefully duplicating products to make the carousel loop and not run out of products on wide screens.
-  const carouselProducts = [...exampleProducts, ...exampleProducts, ...exampleProducts];
+  const carouselProducts = [...exampleProducts];
 
   return (
     <div className=" w-full overflow-x-auto pb-6 pt-1 px-4 mt-2">
