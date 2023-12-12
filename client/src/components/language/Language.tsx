@@ -1,5 +1,5 @@
 // components/Language.tsx
-
+"use client"
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
@@ -9,6 +9,21 @@ const Language: React.FC = () => {
   const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
+  
+  useEffect(() => {
+    // Verificar se o cookie session_info existe
+    const sessionInfoCookie = Cookies.get("session_info");
+
+    if (!sessionInfoCookie) {
+      // Se não existir, criar o cookie com cc sendo undefined
+      const initialSessionInfo = { cc: undefined };
+      Cookies.set("session_info", JSON.stringify(initialSessionInfo), {
+        expires: 365, // ou qualquer outro período desejado
+        secure: true,
+        sameSite: "strict",
+      });
+    }
+  }, []);
 
   useEffect(() => {
     // Verificar se o cookie existe
@@ -85,7 +100,7 @@ const Language: React.FC = () => {
         </div>
       ) : (
         <>
-          <label htmlFor="language" className="text-xl font-medium mb-1">
+          <label htmlFor="language" className="text-lg font-medium mb-1">
             Please, select your desired language.
           </label>
           <span className="text-md font-medium mb-5">

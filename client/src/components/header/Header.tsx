@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../../public/assets/drone_gaijin.png";
@@ -67,29 +68,31 @@ const aboutUsSections: { title: string; href: string; description: string }[] = 
   },
 ];
 
-
-
-
-
 const Header: React.FC = () => {
   const [isNavbarOpen, setNavbarOpen] = useState(false);
 
   const toggleNavbar = () => {
     setNavbarOpen(!isNavbarOpen);
   };
+  useEffect(() => {
+    // Verificar se o cookie session_info existe
+    const sessionInfoCookie = Cookies.get("session_info");
+
+    if (!sessionInfoCookie) {
+      // Se não existir, criar o cookie com cc sendo undefined
+      const initialSessionInfo = { cc: undefined };
+      Cookies.set("session_info", JSON.stringify(initialSessionInfo), {
+        expires: 365, // ou qualquer outro período desejado
+        secure: true,
+        sameSite: "strict",
+      });
+    }
+  }, []);
   return (
     <header className="flex fixed z-10 bg-white align-middle items-center justify-around w-full border-b p-2 mb-40">
-      <div className="flex flex-col items-center justify-center">
-        
-          <h1 className="font-bold text-3xl text-zinc-900 ml-2">
+          <h1 className="font-bold lg:text-3xl md:text-2xl text-2xl w-auto text-zinc-900 ml-2">
           Drone Gaijin
           </h1>
-      
-        <span className="text-xs font-normal text-gray-400 self-end ml-2">
-            Photography and Videography
-          </span>
-      </div>
-
       <div className="hidden md:hidden lg:flex">
         <NavigationMenu>
           <NavigationMenuList>
@@ -232,10 +235,10 @@ const Header: React.FC = () => {
         <Link href={'/eng/auth'} className="hidden md:hidden lg:flex font-normal text-sm bg-zinc-800 text-white rounded-xl px-4 py-2">Sign-In</Link>
         
       </div>
-      <div>
+      <div className="w-20">
       <button
         onClick={toggleNavbar}
-        className={`lg:hidden md:flex flex text-zinc-800 hover:text-zinc-700 text-5xl ml-40 transform transition-transform ${
+        className={`lg:hidden md:flex flex text-zinc-800 hover:text-zinc-700 text-5xl  transform transition-transform ${
           isNavbarOpen ? 'transition-transform duration-300 ease-in' : 'ease-out'
         }`}
         aria-label="Toggle Navigation"
@@ -249,123 +252,7 @@ const Header: React.FC = () => {
           isNavbarOpen ? '0' : '-full'
         } transition-transform duration-300 ease-in-out`}
       >
-          <NavigationMenu >
-          <NavigationMenuList className="flex flex-col  w-full">
-            <NavigationMenuItem className="border-y-2 px-[10rem] bg-gray-100">
-              <NavigationMenuTrigger className="bg-gray-100">Photos</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-4 h-auto">
-                    <NavigationMenuLink asChild>
-                      <Link
-                        className="flex h-20 w-full select-none flex-col rounded-md bg-gradient-to-b from-muted/50 to-muted p-2 no-underline outline-none focus:shadow-md"
-                        href="/"
-                      >
-                        <div className="mb-2 text-lg font-medium">New Photos</div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Quae ducimus omnis, voluptatum eius molestias corrupti
-                          odit? Laborum dolore expedita.
-                        </p>
-                      </Link>
-                    </NavigationMenuLink>
-                  </li>
-                  <ListItem href="/docs" title="Categories">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                    autem nam quae.
-                  </ListItem>
-                  <ListItem href="/docs/installation" title="Promotional">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                    autem nam quae.
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem className="border-b-2 px-[10rem] bg-gray-100">
-              <NavigationMenuTrigger className="bg-gray-100">Videos</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-4 h-auto">
-                    <NavigationMenuLink asChild>
-                      <Link
-                        className="flex h-20 w-full select-none flex-col rounded-md bg-gradient-to-b from-muted/50 to-muted p-2 no-underline outline-none focus:shadow-md"
-                        href="/"
-                      >
-                        <div className="mb-2 text-lg font-medium">New Videos</div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Quae ducimus omnis, voluptatum eius molestias corrupti
-                          odit? Laborum dolore expedita.
-                        </p>
-                      </Link>
-                    </NavigationMenuLink>
-                  </li>
-                  <ListItem href="/docs" title="Categories">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                    autem nam quae.
-                  </ListItem>
-                  <ListItem href="/docs/installation" title="Promotional">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                    autem nam quae.
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem className="border-b-2 px-[10rem] bg-gray-100">
-              <NavigationMenuTrigger className="bg-gray-100">Services</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-4 h-auto">
-                    <NavigationMenuLink asChild>
-                      <Link
-                        className="flex h-20 w-full select-none flex-col rounded-md bg-gradient-to-b from-muted/50 to-muted p-2 no-underline outline-none focus:shadow-md"
-                        href="/"
-                      >
-                        <div className="mb-2 text-lg font-medium">Our Services</div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Quae ducimus omnis, voluptatum eius molestias corrupti
-                          odit? Laborum dolore expedita.
-                        </p>
-                      </Link>
-                    </NavigationMenuLink>
-                  </li>
-                  <ListItem href="/docs" title="Categories">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                    autem nam quae.
-                  </ListItem>
-                  <ListItem href="/docs/installation" title="Promotional">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                    autem nam quae.
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem className="border-b-2 px-[10rem] bg-gray-100">
-              <NavigationMenuTrigger className="bg-gray-100">About Us</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                  {aboutUsSections.map((aboutUsSections) => (
-                    <ListItem
-                      key={aboutUsSections.title}
-                      title={aboutUsSections.title}
-                      href={aboutUsSections.href}
-                    >
-                      {aboutUsSections.description}
-                    </ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem className="border-b-2 px-[10rem] bg-gray-100">
-              <Link href="/docs" legacyBehavior passHref>
-                <NavigationMenuLink className={[navigationMenuTriggerStyle(), 'bg-gray-100'].join(' ')} >
-                  Contact
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+          
         </nav>
       )}
 
