@@ -1,10 +1,13 @@
 import Link from 'next/link';
 import { GridTileImage } from './grid/tile';
+import korankeiFest from '../../public/assets/imgs/KORANKEI FESTIVAL - DJI-09.jpg'
 const imageUrl = 'https://instagram.fssa7-1.fna.fbcdn.net/v/t39.30808-6/407846302_17904603194870794_5434279238283622427_n.jpg?stp=dst-jpg_e15&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xNDQweDk2MC5zZHIifQ&_nc_ht=instagram.fssa7-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=InA7UTaixfcAX-4Moua&edm=ACWDqb8AAAAA&ccb=7-5&ig_cache_key=MzI0OTM4MTM3MDExMDAwODExNQ%3D%3D.2-ccb7-5&oh=00_AfBsX3sIh5RVAmWrgIqAnqA0kurWZFxVxRmQ28YooGfIBQ&oe=657617C7&_nc_sid=ee9879';
+
 const exampleProducts = [
     {
-      handle: 'product-1',
-      title: 'Product 1',
+      handle: 'korankei/korankei-fest#01',
+      title: 'Korankei Fest #01 ',
+      category: 'Super Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '19.99',
@@ -12,12 +15,13 @@ const exampleProducts = [
         },
       },
       featuredImage: {
-        url: imageUrl,
+        url: korankeiFest,
       },
     },
     {
       handle: 'product-2',
       title: 'Product 2',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '29.99',
@@ -30,6 +34,7 @@ const exampleProducts = [
     {
       handle: 'product-3',
       title: 'Product 3',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '14.99',
@@ -42,6 +47,7 @@ const exampleProducts = [
     {
       handle: 'product-4',
       title: 'Product 4',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '24.99',
@@ -54,6 +60,7 @@ const exampleProducts = [
     {
       handle: 'product-5',
       title: 'Product 5',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '39.99',
@@ -66,6 +73,7 @@ const exampleProducts = [
     {
       handle: 'product-6',
       title: 'Product 6',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '49.99',
@@ -78,6 +86,7 @@ const exampleProducts = [
     {
       handle: 'product-7',
       title: 'Product 7',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '29.99',
@@ -90,6 +99,7 @@ const exampleProducts = [
     {
       handle: 'product-8',
       title: 'Product 8',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '19.99',
@@ -102,6 +112,7 @@ const exampleProducts = [
     {
       handle: 'product-9',
       title: 'Product 9',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '34.99',
@@ -114,6 +125,7 @@ const exampleProducts = [
     {
       handle: 'product-10',
       title: 'Product 10',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '44.99',
@@ -127,6 +139,7 @@ const exampleProducts = [
     {
       handle: 'product-11',
       title: 'Product 11',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '25.99',
@@ -140,6 +153,7 @@ const exampleProducts = [
     {
       handle: 'product-12',
       title: 'Product 12',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '19.99',
@@ -153,6 +167,7 @@ const exampleProducts = [
     {
       handle: 'product-13',
       title: 'Product 13',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '14.99',
@@ -166,6 +181,7 @@ const exampleProducts = [
     {
       handle: 'product-14',
       title: 'Product 14',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '29.99',
@@ -179,6 +195,7 @@ const exampleProducts = [
     {
       handle: 'product-15',
       title: 'Product 15',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '24.99',
@@ -192,6 +209,7 @@ const exampleProducts = [
     {
       handle: 'product-16',
       title: 'Product 16',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '19.99',
@@ -205,6 +223,7 @@ const exampleProducts = [
     {
       handle: 'product-17',
       title: 'Product 17',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '34.99',
@@ -218,6 +237,7 @@ const exampleProducts = [
     {
       handle: 'product-18',
       title: 'Product 18',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '44.99',
@@ -231,6 +251,7 @@ const exampleProducts = [
     {
       handle: 'product-19',
       title: 'Product 19',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '25.99',
@@ -244,6 +265,7 @@ const exampleProducts = [
     {
       handle: 'product-20',
       title: 'Product 20',
+      category: 'Hot',
       priceRange: {
         maxVariantPrice: {
           amount: '19.99',
@@ -262,7 +284,7 @@ export async function Carousel() {
   const carouselProducts = [...exampleProducts];
 
   return (
-    <div className=" w-full overflow-x-auto pb-6 pt-1 px-4 mt-2">
+    <div className="bg-transparent w-full overflow-x-auto pb-6 pt-4 px-4">
       <ul className="flex animate-carousel gap-4">
         {carouselProducts.map((product, i) => (
           <li
@@ -274,6 +296,7 @@ export async function Carousel() {
                 alt={product.title}
                 label={{
                   title: product.title,
+                  category: product.category,
                   amount: product.priceRange.maxVariantPrice.amount,
                   currencyCode: product.priceRange.maxVariantPrice.currencyCode
                 }}

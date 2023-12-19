@@ -1,10 +1,11 @@
 // components/Language.tsx
 "use client"
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { AiOutlineLoading3Quarters } from "react-icons/ai"
-
+import logo from "../../../public/assets/imgs/logo_site.png";
 const Language: React.FC = () => {
   const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -100,6 +101,7 @@ const Language: React.FC = () => {
         </div>
       ) : (
         <>
+        <Image src={logo} alt="Drone Gaijin Logo" className="w-64 h-auto ml-4"/>
           <label htmlFor="language" className="text-lg font-medium mb-1">
             Please, select your desired language.
           </label>

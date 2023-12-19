@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../../public/assets/drone_gaijin.png";
+import logo from "../../../public/assets/imgs/logo_site.png";
 import { cn } from "@/lib/utils";
 import {
   AlertDialog,
@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { SiDrone } from "react-icons/si";
 import { FaShoppingCart } from "react-icons/fa";
+import { MdArrowDropDown } from "react-icons/md";
 import { TiWorld } from "react-icons/ti";
 const aboutUsSections: { title: string; href: string; description: string }[] = [
   {
@@ -89,140 +90,33 @@ const Header: React.FC = () => {
     }
   }, []);
   return (
-    <header className="flex fixed z-10 bg-white align-middle items-center justify-around w-full border-b p-2 mb-40">
-          <h1 className="font-bold lg:text-3xl md:text-2xl text-2xl w-auto text-zinc-900 ml-2">
-          Drone Gaijin
-          </h1>
-      <div className="hidden md:hidden lg:flex">
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger >Photos</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-4 h-auto">
-                    <NavigationMenuLink asChild>
-                      <Link
-                        className="flex h-20 w-full select-none flex-col rounded-md bg-gradient-to-b from-muted/50 to-muted p-2 no-underline outline-none focus:shadow-md"
-                        href="/"
-                      >
-                        <div className="mb-2 text-lg font-medium">New Photos</div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Quae ducimus omnis, voluptatum eius molestias corrupti
-                          odit? Laborum dolore expedita.
-                        </p>
-                      </Link>
-                    </NavigationMenuLink>
-                  </li>
-                  <ListItem href="/docs" title="Categories">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                    autem nam quae.
-                  </ListItem>
-                  <ListItem href="/docs/installation" title="Promotional">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                    autem nam quae.
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger >Videos</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-4 h-auto">
-                    <NavigationMenuLink asChild>
-                      <Link
-                        className="flex h-20 w-full select-none flex-col rounded-md bg-gradient-to-b from-muted/50 to-muted p-2 no-underline outline-none focus:shadow-md"
-                        href="/"
-                      >
-                        <div className="mb-2 text-lg font-medium">New Videos</div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Quae ducimus omnis, voluptatum eius molestias corrupti
-                          odit? Laborum dolore expedita.
-                        </p>
-                      </Link>
-                    </NavigationMenuLink>
-                  </li>
-                  <ListItem href="/docs" title="Categories">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                    autem nam quae.
-                  </ListItem>
-                  <ListItem href="/docs/installation" title="Promotional">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                    autem nam quae.
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger >Services</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-4 h-auto">
-                    <NavigationMenuLink asChild>
-                      <Link
-                        className="flex h-20 w-full select-none flex-col rounded-md bg-gradient-to-b from-muted/50 to-muted p-2 no-underline outline-none focus:shadow-md"
-                        href="/"
-                      >
-                        <div className="mb-2 text-lg font-medium">Our Services</div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Quae ducimus omnis, voluptatum eius molestias corrupti
-                          odit? Laborum dolore expedita.
-                        </p>
-                      </Link>
-                    </NavigationMenuLink>
-                  </li>
-                  <ListItem href="/docs" title="Categories">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                    autem nam quae.
-                  </ListItem>
-                  <ListItem href="/docs/installation" title="Promotional">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                    autem nam quae.
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>About Us</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                  {aboutUsSections.map((aboutUsSections) => (
-                    <ListItem
-                      key={aboutUsSections.title}
-                      title={aboutUsSections.title}
-                      href={aboutUsSections.href}
-                    >
-                      {aboutUsSections.description}
-                    </ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/docs" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Contact
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-      </div>
-      <div className="flex gap-1 align-middle items-center">
+    <header className="flex fixed z-10 bg-transparent items-center justify-between w-screen p-2 mb-40">
+          <Image src={logo} alt="Drone Gaijin Logo" className="w-56 h-auto ml-4"/>
+      <div className="hidden md:hidden lg:flex gap-2 pb-20 pr-4">
+      <nav className="flex items-center gap-4">
+        <button className="text-white flex items-center">
+          Midia <MdArrowDropDown />
+        </button>
+        <button className="text-white flex items-center">
+          Services <MdArrowDropDown />
+        </button>
+        <button className="text-white flex items-center">
+        About Us <MdArrowDropDown />
+        </button>
+        <button className="text-white flex items-center">
+        Contact
+        </button>
+      </nav>
+      
       <AlertDialog>
       <AlertDialogTrigger asChild>
-        <button className="hidden md:hidden lg:flex mr-4 gap-[0.1rem] align-middle justify-center items-center font-medium text-sm">Eng<TiWorld size={"1.8rem"}/></button>
+        <button className="hidden md:hidden lg:flex ml-20 gap-[0.1rem] align-middle justify-center items-center font-medium text-sm text-white">Eng<TiWorld size={"1.8rem"}/></button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Select your language</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+          If your language Is not found, await for further updates.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -232,32 +126,12 @@ const Header: React.FC = () => {
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-        <Link href={'/eng/auth'} className="hidden md:hidden lg:flex font-normal text-sm bg-zinc-800 text-white rounded-xl px-4 py-2">Sign-In</Link>
+    <button className="hidden md:hidden lg:flex mx-4 gap-[0.1rem] align-middle justify-center items-center font-medium text-sm text-white"><FaShoppingCart size={"1.8rem"}/></button>
+    
+        <Link href={'/eng/auth'} className="hidden md:hidden lg:flex font-normal text-sm bg-white rounded-xl px-4 py-2">Sign-In</Link>
         
       </div>
-      <div className="w-20">
-      <button
-        onClick={toggleNavbar}
-        className={`lg:hidden md:flex flex text-zinc-800 hover:text-zinc-700 text-5xl  transform transition-transform ${
-          isNavbarOpen ? 'transition-transform duration-300 ease-in' : 'ease-out'
-        }`}
-        aria-label="Toggle Navigation"
-      >
-        {isNavbarOpen ? '✕' : '☰'}
-      </button>
-
-      {isNavbarOpen && (
-        <nav
-        className={`fixed top-16 left-0 w-screen h-screen bg-white transition-transform transform translate-y-${
-          isNavbarOpen ? '0' : '-full'
-        } transition-transform duration-300 ease-in-out`}
-      >
-          
-        </nav>
-      )}
-
-      {/* Restante do conteúdo da sua página aqui */}
-    </div>
+      
     </header>
   );
 };
